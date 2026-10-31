@@ -8,6 +8,8 @@ const PHONE = '0539 784 54 80'
 const PHONE_LINK = 'tel:+905397845480'
 const WHATSAPP = 'https://wa.me/905397845480?text=' + encodeURIComponent('Merhaba, nakliyat hizmetiniz için fiyat teklifi almak istiyorum.')
 const EMAIL = 'olcaynakliyat@gmail.com'
+const ADDRESS = 'Mandıra Caddesi, Kızım Sk. No:10, 34744 Kadıköy/İstanbul'
+const MAPS = 'https://maps.app.goo.gl/42um51LHrA8M9zYt6'
 
 const services = [
   { slug: 'evden-eve-nakliyat', title: 'Evden Eve Nakliyat', short: 'Kadıköy ve Fikirtepe’de sigortalı, profesyonel ev taşımacılığı.', detail: 'Taşınma sürecinizi planlı ve kontrollü yürütmeyi hedefliyoruz. Eşyalarınızın taşınma öncesi hazırlanmasından yeni adresinize ulaştırılmasına kadar ihtiyaçlarınıza uygun bir taşıma planı oluşturun.', icon: Truck },
@@ -75,7 +77,7 @@ function Header() {
   return <>
     <div className="topbar">
       <div className="container topbar-inner">
-        <span><MapPin size={14}/> Kadıköy / İstanbul</span>
+        <a href={MAPS} target="_blank" rel="noreferrer" className="topbar-address"><MapPin size={14}/> {ADDRESS}</a>
         <a href={PHONE_LINK}><Phone size={14}/> {PHONE}</a>
         <a href={WHATSAPP} target="_blank" rel="noreferrer"><MessageCircle size={14}/> WhatsApp’tan teklif alın</a>
       </div>
@@ -108,7 +110,7 @@ function Footer() {
       </div>
       <div><h4>Hızlı Menü</h4><Link to="/">Ana Sayfa</Link><Link to="/hizmetler">Hizmetlerimiz</Link><Link to="/semtler">Hizmet Bölgeleri</Link><Link to="/hakkimizda">Hakkımızda</Link><Link to="/iletisim">İletişim</Link></div>
       <div><h4>Hizmetler</h4>{services.slice(0,5).map(s => <Link key={s.slug} to={'/hizmetler/'+s.slug}>{s.title}</Link>)}</div>
-      <div><h4>İletişim</h4><p><Phone size={15}/> <a href={PHONE_LINK}>{PHONE}</a></p><p><MapPin size={15}/> Fikirtepe Mahallesi, Kadıköy / İstanbul</p><p><MessageCircle size={15}/> <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p></div>
+      <div><h4>İletişim</h4><p><Phone size={15}/> <a href={PHONE_LINK}>{PHONE}</a></p><p><MapPin size={15}/> <a href={MAPS} target="_blank" rel="noreferrer">{ADDRESS}</a></p><p><MessageCircle size={15}/> <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p></div>
     </div>
     <div className="footer-bottom"><div className="container"><span>© 2026 Olcay Nakliyat. Tüm hakları saklıdır.</span><span>Kadıköy Nakliyat · İstanbul Nakliye Hizmetleri</span></div></div>
   </footer>
@@ -269,7 +271,7 @@ function Contact() {
     const message = `Merhaba, nakliyat fiyat teklifi almak istiyorum.%0AAd Soyad: ${encodeURIComponent(form.name)}%0ATelefon: ${encodeURIComponent(form.phone)}%0ATarih: ${encodeURIComponent(form.date)}%0ADetaylar: ${encodeURIComponent(form.details)}`
     window.open(`https://wa.me/905397845480?text=${message}`, '_blank', 'noopener,noreferrer')
   }
-  return <><PageHero title="İletişim" subtitle="Taşınma detaylarınızı paylaşın, size uygun hizmeti birlikte değerlendirelim."/><section className="section"><div className="container contact-layout"><div className="contact-info"><span className="eyebrow">BİZE ULAŞIN</span><h2>Taşınma planınız için ilk adımı atın.</h2><p>Taşınma tarihi, adresler ve eşya bilgilerini paylaşarak fiyat teklifi isteyin.</p><a className="contact-item" href={PHONE_LINK}><span><Phone/></span><div><small>Telefon</small><strong>{PHONE}</strong></div><ArrowRight/></a><a className="contact-item" href={WHATSAPP} target="_blank" rel="noreferrer"><span><MessageCircle/></span><div><small>WhatsApp</small><strong>Mesaj gönderin</strong></div><ArrowRight/></a><div className="contact-item"><span><MapPin/></span><div><small>Adres</small><strong>Fikirtepe Mahallesi, Kadıköy / İstanbul</strong></div></div></div><form className="contact-form" onSubmit={submit}><h3>Fiyat teklifi isteyin</h3><p>Form gönderildiğinde bilgileriniz WhatsApp mesajı olarak açılır.</p><label>Ad Soyad<input name="name" value={form.name} onChange={update} required placeholder="Adınız ve soyadınız"/></label><label>Telefon<input name="phone" value={form.phone} onChange={update} required placeholder="05xx xxx xx xx"/></label><label>Taşınma tarihi<input name="date" value={form.date} onChange={update} type="date"/></label><label>Taşınma detayları<textarea name="details" value={form.details} onChange={update} rows="4" placeholder="Nereden nereye, kat bilgisi, eşya miktarı..."/></label><button className="btn btn-primary form-submit" type="submit">WhatsApp ile gönder <ArrowRight size={17}/></button></form></div></section></>
+  return <><PageHero title="İletişim" subtitle="Taşınma detaylarınızı paylaşın, size uygun hizmeti birlikte değerlendirelim."/><section className="section"><div className="container contact-layout"><div className="contact-info"><span className="eyebrow">BİZE ULAŞIN</span><h2>Taşınma planınız için ilk adımı atın.</h2><p>Taşınma tarihi, adresler ve eşya bilgilerini paylaşarak fiyat teklifi isteyin.</p><a className="contact-item" href={PHONE_LINK}><span><Phone/></span><div><small>Telefon</small><strong>{PHONE}</strong></div><ArrowRight/></a><a className="contact-item" href={WHATSAPP} target="_blank" rel="noreferrer"><span><MessageCircle/></span><div><small>WhatsApp</small><strong>Mesaj gönderin</strong></div><ArrowRight/></a><a className="contact-item" href={MAPS} target="_blank" rel="noreferrer"><span><MapPin/></span><div><small>Adres · Haritada aç</small><strong>{ADDRESS}</strong></div><ArrowRight/></a></div><form className="contact-form" onSubmit={submit}><h3>Fiyat teklifi isteyin</h3><p>Form gönderildiğinde bilgileriniz WhatsApp mesajı olarak açılır.</p><label>Ad Soyad<input name="name" value={form.name} onChange={update} required placeholder="Adınız ve soyadınız"/></label><label>Telefon<input name="phone" value={form.phone} onChange={update} required placeholder="05xx xxx xx xx"/></label><label>Taşınma tarihi<input name="date" value={form.date} onChange={update} type="date"/></label><label>Taşınma detayları<textarea name="details" value={form.details} onChange={update} rows="4" placeholder="Nereden nereye, kat bilgisi, eşya miktarı..."/></label><button className="btn btn-primary form-submit" type="submit">WhatsApp ile gönder <ArrowRight size={17}/></button></form></div></section></>
 }
 
 function NotFound() {

@@ -35,3 +35,9 @@
 .logo-text span{display:block;color:#e67e22;font-size:11px;letter-spacing:2.6px;margin-top:4px}
 .logo-light .logo-text{color:#fff}
 @media(max-width:760px){.logo-icon{width:38px}.logo-text{font-size:18px}.logo-text span{font-size:10px}}
+
+/* Üst bardaki adres bağlantısı */
+.topbar a.topbar-address{margin-left:0}.topbar a.topbar-address:hover{text-decoration:underline}
+.topbar-address+a{margin-left:auto}
+.footer p a:hover{color:#fff}
+@media(max-width:760px){.topbar a.topbar-address{display:none}.topbar-address+a{margin-left:0}}
