@@ -1,6 +1,8 @@
 // Sayfa bazlı SEO bilgileri: başlık, açıklama, canonical, Open Graph ve yapısal veri (JSON-LD).
 // Hem prerender (build sırasında statik HTML üretimi) hem de tarayıcıdaki sayfa geçişleri bu dosyayı kullanır.
 import { PHONE, EMAIL, MAPS, services, neighborhoods, slugify, pexels } from './data.js'
+import { posts } from './blog.js'
+import { generalFaq, serviceFaq } from './faq.js'
 
 export const SITE_URL = 'https://olcaynakliyat.tr'
 const BRAND = 'Olcay Nakliyat'
@@ -17,6 +19,8 @@ export function allRoutes() {
     ...services.map(s => '/hizmetler/' + s.slug),
     '/semtler',
     ...neighborhoods.map(n => '/semtler/' + slugify(n)),
+    '/blog',
+    ...posts.map(p => '/blog/' + p.slug),
     '/hakkimizda',
     '/iletisim',
   ]
@@ -27,7 +31,7 @@ export function getMeta(rawPath) {
   const parts = path.split('/').filter(Boolean)
   const base = { path, url: canonical(path), crumbs: [] }
 
-  if (path === '/') return { ...base,
+  if (path === '/') return { ...base, faq: generalFaq,
     title: 'Olcay Nakliyat | Kadıköy Evden Eve Nakliyat ve Asansörlü Taşıma',
     description: 'Kadıköy ve İstanbul genelinde evden eve nakliyat, asansörlü taşıma, ofis taşıma ve paketleme. Olcay Nakliyat’tan ücretsiz fiyat teklifi alın: ' + PHONE + '.',
   }
@@ -43,6 +47,7 @@ export function getMeta(rawPath) {
       description: `${s.short} Kadıköy ve İstanbul genelinde ${s.title.toLocaleLowerCase('tr-TR')} için ücretsiz teklif alın: ${PHONE}.`,
       crumbs: [['Hizmetlerimiz', '/hizmetler'], [s.title, path]],
       service: s,
+      faq: serviceFaq[s.slug],
     }
   }
   if (path === '/semtler') return { ...base,
@@ -57,6 +62,20 @@ export function getMeta(rawPath) {
       description: `${n} ve çevresinde evden eve nakliyat, asansörlü taşıma, ofis taşıma ve paketleme. ${n} nakliyat için ücretsiz fiyat teklifi: ${PHONE}.`,
       crumbs: [['Hizmet Bölgeleri', '/semtler'], [`${n} Nakliyat`, path]],
       area: n,
+    }
+  }
+  if (path === '/blog') return { ...base,
+    title: 'Blog: Taşınma Rehberleri ve İpuçları | Olcay Nakliyat',
+    description: 'Nakliyat fiyatları, taşınma kontrol listesi, asansörlü taşıma ve paketleme hakkında rehberler. Taşınmadan önce bilmeniz gerekenler.',
+    crumbs: [['Blog', '/blog']],
+  }
+  if (parts[0] === 'blog' && parts[1]) {
+    const post = posts.find(x => x.slug === parts[1])
+    if (post) return { ...base,
+      title: post.title.length > 52 ? post.title : `${post.title} | ${BRAND}`,
+      description: post.description,
+      crumbs: [['Blog', '/blog'], [post.title, path]],
+      post,
     }
   }
   if (path === '/hakkimizda') return { ...base,
@@ -110,6 +129,15 @@ export function getJsonLd(meta) {
     '@type': 'Service', name: meta.service.title, description: meta.service.short, url: meta.url,
     serviceType: meta.service.title, provider: { '@id': business['@id'] }, areaServed: { '@type': 'City', name: 'İstanbul' },
   })
+  if (meta.faq?.length) graph.push({
+    '@type': 'FAQPage',
+    mainEntity: meta.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  })
+  if (meta.post) graph.push({
+    '@type': 'BlogPosting', headline: meta.post.title, description: meta.post.description, image: meta.post.photo,
+    datePublished: meta.post.date, dateModified: meta.post.date, inLanguage: 'tr-TR', url: meta.url, mainEntityOfPage: meta.url,
+    author: { '@id': business['@id'] }, publisher: { '@id': business['@id'] },
+  })
   return { '@context': 'https://schema.org', '@graph': graph }
 }
 
@@ -121,13 +149,13 @@ export function headHtml(meta) {
     `<title>${esc(meta.title)}</title>`,
     `<meta name="description" content="${esc(meta.description)}" />`,
     meta.notFound ? '<meta name="robots" content="noindex" />' : `<link rel="canonical" href="${meta.url}" />`,
-    `<meta property="og:type" content="website" />`,
+    `<meta property="og:type" content="${meta.post ? 'article' : 'website'}" />`,
     `<meta property="og:site_name" content="${BRAND}" />`,
     `<meta property="og:locale" content="tr_TR" />`,
     `<meta property="og:title" content="${esc(meta.title)}" />`,
     `<meta property="og:description" content="${esc(meta.description)}" />`,
     `<meta property="og:url" content="${meta.url}" />`,
-    `<meta property="og:image" content="${OG_IMAGE}" />`,
+    `<meta property="og:image" content="${meta.post ? meta.post.photo : OG_IMAGE}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
   ]
   if (!meta.notFound) tags.push(`<script type="application/ld+json">${JSON.stringify(getJsonLd(meta)).replace(/</g, '\\u003c')}</script>`)
