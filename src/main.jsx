@@ -9,7 +9,7 @@ const PHONE_LINK = 'tel:+905397845480'
 const WHATSAPP = 'https://wa.me/905397845480?text=' + encodeURIComponent('Merhaba, nakliyat hizmetiniz için fiyat teklifi almak istiyorum.')
 const EMAIL = 'olcaynakliyat@gmail.com'
 const ADDRESS = 'Mandıra Caddesi, Kızım Sk. No:10, 34744 Kadıköy/İstanbul'
-const MAPS = 'https://maps.app.goo.gl/42um51LHrA8M9zYt6'
+const MAPS = 'https://maps.app.goo.gl/C8EnS3GvocRpssSZ9'
 
 const services = [
   { slug: 'evden-eve-nakliyat', title: 'Evden Eve Nakliyat', short: 'Kadıköy ve Fikirtepe’de sigortalı, profesyonel ev taşımacılığı.', detail: 'Taşınma sürecinizi planlı ve kontrollü yürütmeyi hedefliyoruz. Eşyalarınızın taşınma öncesi hazırlanmasından yeni adresinize ulaştırılmasına kadar ihtiyaçlarınıza uygun bir taşıma planı oluşturun.', icon: Truck },
