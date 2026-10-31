@@ -59,6 +59,15 @@ const neighborhoods = [
   'Koşuyolu', 'Acıbadem', 'Caferağa', 'Yeldeğirmeni', 'Hasanpaşa', 'Merdivenköy'
 ]
 
+// Logo: Olcay Nakliyat'ın mevcut sitesindeki logo (Font Awesome "truck-moving" ikonu + yazı).
+// Font Awesome Free ikonu, CC BY 4.0 lisansı: https://fontawesome.com/license/free
+function Logo({ light = false }) {
+  return <span className={'logo' + (light ? ' logo-light' : '')}>
+    <svg className="logo-icon" viewBox="0 0 640 512" aria-hidden="true"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96L0 304l0 80 0 16c0 44.2 35.8 80 80 80c26.2 0 49.4-12.6 64-32c14.6 19.4 37.8 32 64 32c44.2 0 80-35.8 80-80c0-5.5-.6-10.8-1.6-16L416 384l33.6 0c-1 5.2-1.6 10.5-1.6 16c0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16l1.6 0c17.7 0 32-14.3 32-32l0-64 0-16 0-10.3c0-9.2-3.2-18.2-9-25.3l-58.8-71.8c-10.6-13-26.5-20.5-43.3-20.5L480 144l0-48c0-35.3-28.7-64-64-64L64 32zM585 256l-105 0 0-64 48.8 0c2.4 0 4.7 1.1 6.2 2.9L585 256zM528 368a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM176 400a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM80 368a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+    <span className="logo-text">OLCAY<span>NAKLİYAT</span></span>
+  </span>
+}
+
 function Header() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
@@ -73,9 +82,7 @@ function Header() {
     </div>
     <header className="header">
       <div className="container nav-wrap">
-        <Link to="/" className="brand" aria-label="Olcay Nakliyat ana sayfa">
-          <span className="brand-mark"><Truck size={25}/></span>
-          <span><strong>OLCAY<span>NAKLİYAT</span></strong><small>GÜVENLİ TAŞIMACILIK</small></span>
+        <Link to="/" className="brand" aria-label="Olcay Nakliyat ana sayfa"><Logo/>
         </Link>
         <button className="mobile-toggle" onClick={() => setOpen(!open)} aria-label="Menüyü aç/kapat">{open ? <X/> : <Menu/>}</button>
         <nav className={open ? 'nav open' : 'nav'}>
@@ -95,7 +102,7 @@ function Footer() {
   return <footer className="footer">
     <div className="container footer-grid">
       <div className="footer-about">
-        <Link to="/" className="brand brand-light"><span className="brand-mark"><Truck size={24}/></span><span><strong>OLCAY<span>NAKLİYAT</span></strong><small>GÜVENLİ TAŞIMACILIK</small></span></Link>
+        <Link to="/" className="brand" aria-label="Olcay Nakliyat ana sayfa"><Logo light/></Link>
         <p>Kadıköy ve İstanbul genelinde evden eve nakliyat, asansörlü taşıma ve ofis taşımacılığı için bizimle iletişime geçin.</p>
         <a className="footer-whatsapp" href={WHATSAPP} target="_blank" rel="noreferrer"><MessageCircle size={17}/> WhatsApp’tan yazın</a>
       </div>
