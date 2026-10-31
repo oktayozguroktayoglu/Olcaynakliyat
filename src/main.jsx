@@ -62,7 +62,7 @@ const neighborhoods = [
 function Header() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
-  React.useEffect(() => setOpen(false), [location.pathname])
+  React.useEffect(() => { setOpen(false) }, [location.pathname])
   return <>
     <div className="topbar">
       <div className="container topbar-inner">
@@ -272,7 +272,7 @@ function NotFound() {
 
 function ScrollToTop() {
   const { pathname } = useLocation()
-  React.useEffect(()=>window.scrollTo(0,0),[pathname])
+  React.useEffect(() => { window.scrollTo(0, 0) }, [pathname])
   return null
 }
 
