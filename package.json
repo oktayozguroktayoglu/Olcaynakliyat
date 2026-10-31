@@ -5,7 +5,7 @@
   "homepage": "https://olcaynakliyat.tr",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp dist/index.html dist/404.html",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -23,5 +23,6 @@
     "@vitejs/plugin-react": "^4.2.1",
     "gh-pages": "^6.1.1",
     "vite": "^5.1.6"
-  }
+  },
+  "type": "module"
 }
