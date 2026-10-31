@@ -285,7 +285,7 @@ function ScrollToTop() {
 }
 
 function App() {
-  return <BrowserRouter basename="/Olcaynakliyat"><ScrollToTop/><Header/><Routes>
+  return <BrowserRouter><ScrollToTop/><Header/><Routes>
     <Route path="/" element={<Home/>}/>
     <Route path="/hizmetler" element={<ServicesPage/>}/>
     <Route path="/hizmetler/:slug" element={<ServiceDetail/>}/>

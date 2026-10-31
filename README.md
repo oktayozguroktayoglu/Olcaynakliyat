@@ -13,7 +13,7 @@ npm run dev
 ## GitHub Pages üzerinde yayınlama
 
 1. ZIP içeriğini `Olcaynakliyat` adlı GitHub deposuna yükleyin.
-2. `vite.config.js` dosyasındaki `base: '/Olcaynakliyat/'` değeri depo adıyla aynı olmalı.
+2. Site özel alan adında (olcaynakliyat.tr) yayınlanır; `vite.config.js` içinde `base: '/'` ve `public/CNAME` dosyası bu yüzden var.
 3. GitHub deposunda **Settings → Pages** bölümünü açın.
 4. **Build and deployment → Source** alanında **GitHub Actions** seçin.
 5. Aşağıdaki workflow dosyası otomatik olarak build edip yayınlar. İlk kurulumdan sonra `main` dalına push yapmanız yeterlidir.
