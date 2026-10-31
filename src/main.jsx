@@ -18,6 +18,42 @@ const services = [
   { slug: '7-24-acil-nakliye', title: '7/24 Acil Nakliye', short: 'Acil taşıma ihtiyaçlarınız için 7 gün 24 saat iletişim.', detail: 'Acil nakliye ihtiyacınız olduğunda telefonla ulaşarak tarih, adres ve eşya bilgilerini paylaşabilirsiniz. Uygunluk ve hizmet koşulları görüşme sırasında teyit edilir.', icon: Clock3 },
 ]
 
+// Pexels fotoğrafları (ücretsiz lisans: https://www.pexels.com/license/)
+const pexels = id => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1200`
+
+const serviceExtras = {
+  'evden-eve-nakliyat': {
+    photo: pexels(7464687), alt: 'Üniformalı iki nakliye çalışanı koli taşıyor', credit: 'RDNE Stock project',
+    about: 'Ev taşımak, bir hayatı bir adresten diğerine eksiksiz aktarmak demek. Taşınma gününden önce eşya listesini, kat ve bina durumunu, varsa özel parçaları birlikte konuşuyor; mobilyaların sökülmesinden kolilerin yerleştirilmesine kadar her adımı planlıyoruz. Eşyalarınız korunarak paketleniyor, araca düzenli biçimde yükleniyor ve yeni evinizde istediğiniz odaya bırakılıyor. Böylece taşınma günü sizin için bir koşuşturma değil, kontrollü bir süreç oluyor.',
+    points: ['Taşınma öncesi planlama', 'Mobilya söküm ve kurulum', 'Odaya göre yerleştirme'],
+  },
+  'asansorlu-tasima': {
+    photo: pexels(7464676), alt: 'İki nakliye çalışanı kanepe taşıyor', credit: 'RDNE Stock project',
+    about: 'Yüksek katlı binalarda büyük mobilyaları dar merdiven ve asansörlerden geçirmek hem zaman alır hem de eşyaya ve binaya zarar verme riski taşır. Dış cephe taşıma asansörü ile eşyalar pencere veya balkondan doğrudan araca indirilir; bu da taşınma süresini kısaltır, bina ortak alanlarını korur ve ağır parçaların güvenle taşınmasını sağlar. Asansör kurulumu için cephe, sokak genişliği ve park imkânı önceden değerlendirilir.',
+    points: ['Yüksek katlar için ideal', 'Daha kısa taşınma süresi', 'Bina ortak alanlarını korur'],
+  },
+  'ofis-is-yeri-tasima': {
+    photo: pexels(7218678), alt: 'Üzerinde ofis yazan koliyi taşıyan kişi', credit: 'Blue Bird',
+    about: 'Bir iş yerini taşırken asıl önemli olan, işinizin olabildiğince az aksamasıdır. Masa, dolap, arşiv ve elektronik ekipmanlar bölüm bölüm etiketlenerek paketlenir; taşıma, mesai saatlerinize uygun bir zamanlamayla yapılır. Yeni ofisinizde her şey önceden belirlenen düzene göre yerleştirilir, böylece ekibiniz kısa sürede çalışmaya devam edebilir.',
+    points: ['Mesaiye uygun zamanlama', 'Etiketli ve düzenli paketleme', 'Hızlı yeniden kurulum'],
+  },
+  'paketleme-korumali-tasima': {
+    photo: pexels(7464249), alt: 'Cam bardakların koruyucu malzemeyle kutuya yerleştirilmesi', credit: 'RDNE Stock project',
+    about: 'Taşınmada hasarın büyük kısmı yetersiz paketlemeden kaynaklanır. Cam ve porselen eşyalar, elektronik cihazlar, tablolar ve aynalar gibi hassas parçalar; balonlu naylon, koruyucu köpük, kalın koliler ve mobilya örtüleriyle türüne uygun şekilde paketlenir. Her koli içeriğine göre işaretlenir, böylece hem taşıma sırasında dikkatle ele alınır hem de yeni adreste açması kolaylaşır.',
+    points: ['Türüne uygun koruma malzemesi', 'Kırılacak eşyaya özel paketleme', 'İçeriğe göre işaretli koliler'],
+  },
+  'merdivenli-tasima': {
+    photo: pexels(7464732), alt: 'Merdivenden koli taşıyan nakliye çalışanı', credit: 'RDNE Stock project',
+    about: 'Kadıköy’ün eski ve asansörsüz binalarında dar merdivenler ve keskin dönüşler, taşınmanın en zorlu kısmıdır. Merdiven genişliği, kat sayısı ve eşya ölçüleri önceden değerlendirilerek gerekiyorsa mobilyalar sökülür, köşeler ve tırabzanlar korunur. Deneyimli ekip, ağır parçaları doğru taşıma teknikleriyle hem eşyaya hem binaya zarar vermeden indirir ve çıkarır.',
+    points: ['Asansörsüz binalara uygun', 'Söküm ile dar alan geçişi', 'Duvar ve tırabzan koruması'],
+  },
+  '7-24-acil-nakliye': {
+    photo: pexels(26443249), alt: 'Gece şehir sokağında ilerleyen kamyon', credit: 'Elina Volkova',
+    about: 'Bazen taşınma planlandığı gibi gitmez: ani bir tahliye, son dakika değişen bir tarih ya da beklenmedik bir iş yeri taşıması. Böyle durumlarda bizi günün her saatinde arayabilir, adres ve eşya bilgilerini paylaşarak en hızlı uygun zamanı birlikte belirleyebilirsiniz. Acil işlerde de aynı özen ve düzenle çalışırız.',
+    points: ['Günün her saatinde iletişim', 'Son dakika taşımaları', 'Hızlı planlama'],
+  },
+}
+
 const neighborhoods = [
   'Fikirtepe', 'Moda', 'Suadiye', 'Erenköy', 'Göztepe', 'Bostancı',
   'Koşuyolu', 'Acıbadem', 'Caferağa', 'Yeldeğirmeni', 'Hasanpaşa', 'Merdivenköy'
@@ -161,7 +197,39 @@ function PageHero({ title, subtitle, crumb }) {
 }
 
 function ServicesPage() {
-  return <><PageHero title="Nakliyat Hizmetlerimiz" subtitle="Taşınma ihtiyacınıza uygun çözümü birlikte belirleyelim."/><section className="section"><div className="container"><div className="service-grid">{services.map(s=><ServiceCard key={s.slug} service={s}/>)}</div></div></section></>
+  return <>
+    <PageHero title="Nakliyat Hizmetlerimiz" subtitle="Taşınma ihtiyacınıza uygun çözümü birlikte belirleyelim."/>
+    <section className="section">
+      <div className="container">
+        <nav className="svc-jump" aria-label="Hizmetler">{services.map(s => <a key={s.slug} href={'#'+s.slug} onClick={e => { e.preventDefault(); document.getElementById(s.slug)?.scrollIntoView({ behavior: 'smooth', block: 'start' }) }}>{s.title}</a>)}</nav>
+        <div className="svc-list">
+          {services.map((s, i) => {
+            const x = serviceExtras[s.slug]
+            const Icon = s.icon
+            return <article key={s.slug} id={s.slug} className={'svc-row' + (i % 2 ? ' reverse' : '')}>
+              <figure className="svc-photo">
+                <img src={x.photo} alt={x.alt} loading={i < 2 ? 'eager' : 'lazy'}/>
+                <span className="svc-num">{String(i + 1).padStart(2, '0')}</span>
+                <figcaption>Fotoğraf: {x.credit} / Pexels</figcaption>
+              </figure>
+              <div className="svc-copy">
+                <div className="service-icon"><Icon size={25}/></div>
+                <h2>{s.title}</h2>
+                <p className="svc-lead">{s.short}</p>
+                <p>{x.about}</p>
+                <ul className="svc-points">{x.points.map(p => <li key={p}><CheckCircle2 size={18}/> {p}</li>)}</ul>
+                <div className="svc-actions">
+                  <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn btn-primary">Teklif alın <ArrowRight size={17}/></a>
+                  <Link to={'/hizmetler/' + s.slug} className="btn btn-ghost">Detaylar</Link>
+                </div>
+              </div>
+            </article>
+          })}
+        </div>
+      </div>
+    </section>
+    <section className="cta-section"><div className="container cta-inner"><div><span className="eyebrow">HANGİ HİZMET SİZE UYGUN?</span><h2>Kararsız mısınız? Birlikte belirleyelim.</h2><p>Adresleri, kat bilgisini ve eşya miktarını paylaşın, size en uygun çözümü önerelim.</p></div><div className="cta-actions"><a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn btn-white"><MessageCircle size={18}/> WhatsApp’tan yazın</a><a href={PHONE_LINK} className="cta-phone"><Phone size={17}/> {PHONE}</a></div></div></section>
+  </>
 }
 
 function ServiceDetail() {
