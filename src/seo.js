@@ -1,6 +1,6 @@
 // Sayfa bazlı SEO bilgileri: başlık, açıklama, canonical, Open Graph ve yapısal veri (JSON-LD).
 // Hem prerender (build sırasında statik HTML üretimi) hem de tarayıcıdaki sayfa geçişleri bu dosyayı kullanır.
-import { PHONE, EMAIL, MAPS, services, neighborhoods, slugify, pexels } from './data.js'
+import { PHONE, EMAIL, MAPS, GA_ID, GSC_VERIFICATION, services, neighborhoods, slugify, pexels } from './data.js'
 import { posts } from './blog.js'
 import { generalFaq, serviceFaq } from './faq.js'
 
@@ -135,7 +135,7 @@ export function getJsonLd(meta) {
   })
   if (meta.post) graph.push({
     '@type': 'BlogPosting', headline: meta.post.title, description: meta.post.description, image: meta.post.photo,
-    datePublished: meta.post.date, dateModified: meta.post.date, inLanguage: 'tr-TR', url: meta.url, mainEntityOfPage: meta.url,
+    datePublished: meta.post.date, dateModified: meta.post.updated || meta.post.date, inLanguage: 'tr-TR', url: meta.url, mainEntityOfPage: meta.url,
     author: { '@id': business['@id'] }, publisher: { '@id': business['@id'] },
   })
   return { '@context': 'https://schema.org', '@graph': graph }
@@ -159,7 +159,20 @@ export function headHtml(meta) {
     `<meta name="twitter:card" content="summary_large_image" />`,
   ]
   if (!meta.notFound) tags.push(`<script type="application/ld+json">${JSON.stringify(getJsonLd(meta)).replace(/</g, '\\u003c')}</script>`)
+  if (GSC_VERIFICATION) tags.push(`<meta name="google-site-verification" content="${esc(GSC_VERIFICATION)}" />`)
+  if (GA_ID) tags.push(analyticsHtml(GA_ID))
   return tags.join('\n    ')
+}
+
+// GA4 + dönüşüm olayları: telefon (phone_call), WhatsApp (whatsapp_click) tıklamaları ve teklif formu (quote_form_submit).
+// Sayfa geçişleri GA4'ün "geliştirilmiş ölçüm" özelliğiyle (tarayıcı geçmişi değişiklikleri) otomatik sayılır.
+function analyticsHtml(id) {
+  const safe = id.replace(/[^A-Za-z0-9-]/g, '')
+  return `<script async src="https://www.googletagmanager.com/gtag/js?id=${safe}"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${safe}');
+    document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';
+    if(h.indexOf('tel:')===0)gtag('event','phone_call',{link_url:h,page_path:location.pathname});
+    else if(h.indexOf('wa.me')>-1)gtag('event','whatsapp_click',{link_url:h,page_path:location.pathname});});</script>`
 }
 
 // Tarayıcıda sayfa değiştiğinde başlık ve meta etiketlerini günceller

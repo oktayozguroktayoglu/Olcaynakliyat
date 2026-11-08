@@ -7,6 +7,12 @@ export const EMAIL = 'olcaynakliyat@gmail.com'
 export const ADDRESS = 'Mandıra Caddesi, Kızım Sk. No:10, 34744 Kadıköy/İstanbul'
 export const MAPS = 'https://maps.app.goo.gl/C8EnS3GvocRpssSZ9'
 
+// Ölçüm ve doğrulama ayarları. Boş bırakılırsa sayfaya hiçbir şey eklenmez.
+// GA_ID: Google Analytics 4 ölçüm kimliği (ör. 'G-XXXXXXXXXX'). Doluysa telefon, WhatsApp ve form tıklamaları da olay olarak ölçülür.
+// GSC_VERIFICATION: Search Console > HTML etiketi yöntemindeki content değeri (yalnızca kod, etiketin tamamı değil).
+export const GA_ID = ''
+export const GSC_VERIFICATION = ''
+
 export const services = [
   { slug: 'evden-eve-nakliyat', title: 'Evden Eve Nakliyat', short: 'Kadıköy ve Fikirtepe’de sigortalı, profesyonel ev taşımacılığı.', detail: 'Taşınma sürecinizi planlı ve kontrollü yürütmeyi hedefliyoruz. Eşyalarınızın taşınma öncesi hazırlanmasından yeni adresinize ulaştırılmasına kadar ihtiyaçlarınıza uygun bir taşıma planı oluşturun.', icon: Truck },
   { slug: 'asansorlu-tasima', title: 'Asansörlü Taşıma', short: 'Yüksek katlı binalarda modern asansör sistemleri ile güvenli ve hızlı taşıma.', detail: 'Bina koşulları ve erişim imkânları uygun olduğunda dış cephe taşıma asansörüyle taşıma süreci kolaylaştırılabilir. Keşif sırasında bina ve eşya koşulları değerlendirilir.', icon: Package },

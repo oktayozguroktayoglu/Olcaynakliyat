@@ -22,10 +22,12 @@ for (const url of routes) {
 // Bilinmeyen adresler: boş kök, uygulama tarayıcıda 404 sayfasını çizer
 fs.writeFileSync(path.join(dist, '404.html'), page(headHtml(getMeta('/__404')), ''))
 
-const today = new Date().toISOString().slice(0, 10)
+// lastmod yalnızca gerçekten bilinen değişiklik tarihi olan sayfalara (blog yazıları) yazılır.
+// Her build'de tüm sayfalara bugünün tarihini yazmak Google'ın bu alana güvenmemesine yol açar.
+const lastmod = m => m.post ? `<lastmod>${m.post.updated || m.post.date}</lastmod>` : ''
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes.map(u => `  <url><loc>${getMeta(u).url}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+${routes.map(u => { const m = getMeta(u); return `  <url><loc>${m.url}</loc>${lastmod(m)}</url>` }).join('\n')}
 </urlset>
 `
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap)

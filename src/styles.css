@@ -87,3 +87,6 @@
 
 @media(max-width:1000px){.post-grid{grid-template-columns:repeat(2,1fr)}.post-layout,.faq-layout{grid-template-columns:1fr;gap:34px}}
 @media(max-width:760px){.post-grid{grid-template-columns:1fr}.post-content{font-size:16px}}
+
+/* Teklif formu: iki sütunlu satırlar ve açılır listeler */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.contact-form select{display:block;width:100%;margin-top:8px;padding:13px 14px;border:1px solid #dfe7eb;border-radius:8px;background:#fbfcfd;color:var(--navy);outline:none;font-size:13px;font-family:inherit}.contact-form select:focus{border-color:var(--teal)}@media(max-width:480px){.form-row{grid-template-columns:1fr;gap:0}}
