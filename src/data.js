@@ -6,6 +6,8 @@ export const WHATSAPP = 'https://wa.me/905397845480?text=' + encodeURIComponent(
 export const EMAIL = 'olcaynakliyat@gmail.com'
 export const ADDRESS = 'Mandıra Caddesi, Kızım Sk. No:10, 34744 Kadıköy/İstanbul'
 export const MAPS = 'https://maps.app.goo.gl/C8EnS3GvocRpssSZ9'
+// Google İşletme Profili yorum linki (olcaynakliyat.tr/yorum bu adrese yönlendirir)
+export const REVIEW_URL = 'https://g.page/r/CQl8yEt1Vc8fEBM/review'
 
 // Ölçüm ve doğrulama ayarları. Boş bırakılırsa sayfaya hiçbir şey eklenmez.
 // GA_ID: Google Analytics 4 ölçüm kimliği (ör. 'G-XXXXXXXXXX'). Doluysa telefon, WhatsApp ve form tıklamaları da olay olarak ölçülür.

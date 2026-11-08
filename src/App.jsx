@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Routes, Route, Link, NavLink, useLocation, useParams } from 'react-router-dom'
 import { Menu, X, ArrowRight, Phone, MessageCircle, ShieldCheck, Truck, Package, Building2, Clock3, Star, CheckCircle2, MapPin, ChevronRight, BadgeCheck } from 'lucide-react'
-import { PHONE, PHONE_LINK, WHATSAPP, EMAIL, ADDRESS, MAPS, services, serviceExtras, neighborhoods, slugify } from './data.js'
+import { PHONE, PHONE_LINK, WHATSAPP, EMAIL, ADDRESS, MAPS, REVIEW_URL, services, serviceExtras, neighborhoods, slugify } from './data.js'
 import { applyMeta } from './seo.js'
 import { areaInfo } from './areas.js'
 import { generalFaq, serviceFaq } from './faq.js'
@@ -299,6 +299,19 @@ function NotFound() {
   return <section className="section not-found"><div className="container"><span className="eyebrow">404 · SAYFA BULUNAMADI</span><h1>Aradığınız sayfayı bulamadık.</h1><p>İçeriğe ana sayfadan devam edebilirsiniz.</p><Link to="/" className="btn btn-primary">Ana sayfaya dön <ArrowRight size={17}/></Link></div></section>
 }
 
+// olcaynakliyat.tr/yorum: müşteriyi Google yorum ekranına yönlendirir (QR kart ve WhatsApp mesajı için kısa link)
+function Review() {
+  React.useEffect(() => { const t = setTimeout(() => { window.location.href = REVIEW_URL }, 2000); return () => clearTimeout(t) }, [])
+  return <section className="section review-page"><div className="container review-inner">
+    <div className="proof-stars review-stars">{[0,1,2,3,4].map(i => <Star key={i} fill="currentColor" size={30}/>)}</div>
+    <h1>Taşınmanız nasıl geçti?</h1>
+    <p>Bizi tercih ettiğiniz için teşekkür ederiz. Deneyiminizi Google’da birkaç cümleyle paylaşırsanız, sonraki müşterilerimize çok yardımcı olur.</p>
+    <a className="btn btn-primary review-btn" href={REVIEW_URL}>Google’da yorum yazın <ArrowRight size={18}/></a>
+    <ol className="review-steps"><li>Yıldız sayısını seçin</li><li>Taşınmanızı birkaç cümleyle anlatın</li><li>“Yayınla”ya dokunun</li></ol>
+    <small>Birkaç saniye içinde Google yorum sayfasına yönlendirileceksiniz.</small>
+  </div></section>
+}
+
 function ScrollToTop() {
   const { pathname } = useLocation()
   React.useEffect(() => { window.scrollTo(0, 0) }, [pathname])
@@ -322,6 +335,7 @@ export default function App() {
     <Route path="/blog/:slug" element={<BlogPost/>}/>
     <Route path="/hakkimizda" element={<About/>}/>
     <Route path="/iletisim" element={<Contact/>}/>
+    <Route path="/yorum" element={<Review/>}/>
     <Route path="*" element={<NotFound/>}/>
   </Routes><Footer/><FloatingActions/></>
 }

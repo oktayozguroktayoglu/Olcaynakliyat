@@ -90,3 +90,6 @@
 
 /* Teklif formu: iki sütunlu satırlar ve açılır listeler */
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.contact-form select{display:block;width:100%;margin-top:8px;padding:13px 14px;border:1px solid #dfe7eb;border-radius:8px;background:#fbfcfd;color:var(--navy);outline:none;font-size:13px;font-family:inherit}.contact-form select:focus{border-color:var(--teal)}@media(max-width:480px){.form-row{grid-template-columns:1fr;gap:0}}
+
+/* /yorum sayfası */
+.review-page{min-height:60vh;background:var(--pale)}.review-inner{max-width:560px;text-align:center;margin:0 auto}.review-stars{display:flex;justify-content:center;gap:6px;color:#f5a623;margin-bottom:20px}.review-inner h1{font-family:Manrope,sans-serif;font-size:clamp(30px,6vw,42px);color:var(--navy);letter-spacing:-1px;margin:0 0 14px}.review-inner>p{font-size:15px;line-height:1.8;color:var(--muted);margin:0 0 26px}.review-btn{font-size:16px;padding:16px 28px}.review-steps{text-align:left;display:inline-block;margin:28px 0 18px;padding-left:20px;color:var(--navy);font-size:14px;line-height:2}.review-inner small{display:block;font-size:12px;color:#83919e}

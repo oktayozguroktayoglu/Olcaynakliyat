@@ -1,6 +1,6 @@
 // Sayfa bazlı SEO bilgileri: başlık, açıklama, canonical, Open Graph ve yapısal veri (JSON-LD).
 // Hem prerender (build sırasında statik HTML üretimi) hem de tarayıcıdaki sayfa geçişleri bu dosyayı kullanır.
-import { PHONE, EMAIL, MAPS, GA_ID, GSC_VERIFICATION, services, neighborhoods, slugify, pexels } from './data.js'
+import { PHONE, EMAIL, MAPS, REVIEW_URL, GA_ID, GSC_VERIFICATION, services, neighborhoods, slugify, pexels } from './data.js'
 import { posts } from './blog.js'
 import { generalFaq, serviceFaq } from './faq.js'
 
@@ -25,6 +25,9 @@ export function allRoutes() {
     '/iletisim',
   ]
 }
+
+// Prerender edilen ama site haritasına girmeyen, arama motorlarına kapalı sayfalar
+export const extraRoutes = ['/yorum']
 
 export function getMeta(rawPath) {
   const path = rawPath.length > 1 ? rawPath.replace(/\/$/, '') : rawPath
@@ -82,6 +85,10 @@ export function getMeta(rawPath) {
     title: 'Hakkımızda | Olcay Nakliyat Kadıköy',
     description: 'Olcay Nakliyat, Kadıköy merkezli olarak evden eve nakliyat, asansörlü taşıma ve ofis taşımacılığı hizmeti verir. Planlı ve özenli taşıma.',
     crumbs: [['Hakkımızda', '/hakkimizda']],
+  }
+  if (path === '/yorum') return { ...base, noindex: true, redirect: REVIEW_URL,
+    title: 'Olcay Nakliyat’ı Değerlendirin',
+    description: 'Taşınmanız nasıl geçti? Deneyiminizi Google’da birkaç cümleyle paylaşın.',
   }
   if (path === '/iletisim') return { ...base,
     title: 'İletişim ve Fiyat Teklifi | Olcay Nakliyat',
@@ -148,7 +155,7 @@ export function headHtml(meta) {
   const tags = [
     `<title>${esc(meta.title)}</title>`,
     `<meta name="description" content="${esc(meta.description)}" />`,
-    meta.notFound ? '<meta name="robots" content="noindex" />' : `<link rel="canonical" href="${meta.url}" />`,
+    meta.notFound || meta.noindex ? '<meta name="robots" content="noindex" />' : `<link rel="canonical" href="${meta.url}" />`,
     `<meta property="og:type" content="${meta.post ? 'article' : 'website'}" />`,
     `<meta property="og:site_name" content="${BRAND}" />`,
     `<meta property="og:locale" content="tr_TR" />`,
@@ -159,6 +166,7 @@ export function headHtml(meta) {
     `<meta name="twitter:card" content="summary_large_image" />`,
   ]
   if (!meta.notFound) tags.push(`<script type="application/ld+json">${JSON.stringify(getJsonLd(meta)).replace(/</g, '\\u003c')}</script>`)
+  if (meta.redirect) tags.push(`<meta http-equiv="refresh" content="2;url=${esc(meta.redirect)}" />`)
   if (GSC_VERIFICATION) tags.push(`<meta name="google-site-verification" content="${esc(GSC_VERIFICATION)}" />`)
   if (GA_ID) tags.push(analyticsHtml(GA_ID))
   return tags.join('\n    ')
