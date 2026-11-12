@@ -4,6 +4,45 @@ import { pexels } from './data.js'
 
 export const posts = [
   {
+    slug: 'istanbul-evden-eve-nakliyat-rehberi',
+    title: 'İstanbul’da Evden Eve Nakliyat Rehberi: Taşınmadan Önce Bilmeniz Gerekenler',
+    description: 'İstanbul’da evden eve ve şehirler arası nakliyat için planlama adımları: eşya listesi, adres bilgileri, teklif karşılaştırma ve taşınma günü için küçük ama önemli ipuçları.',
+    date: '2026-11-12',
+    photo: pexels(7464676), photoAlt: 'İki nakliye çalışanı kanepe taşıyor', credit: 'RDNE Stock project',
+    related: ['evden-eve-nakliyat', 'paketleme-korumali-tasima'],
+    body: [
+      ['p', 'Evden eve nakliyat hizmeti alırken çoğu kişinin ilk sorduğu şey fiyattır. Ancak İstanbul’da bir taşınmanın maliyeti ve yükü; adres, kat, mesafe ve hazırlık gibi birkaç etkene bağlı olarak belirgin biçimde değişir. Bu rehberde taşınma öncesinde nasıl planlama yapabileceğinizi ve nakliye firmasından nasıl net bir teklif alabileceğinizi anlatıyoruz.'],
+      ['h2', 'Taşınma için ne zaman harekete geçmelisiniz?'],
+      ['p', 'Eşya listesini çıkarmak ve tarih seçmek için en az iki üç hafta öncesinden başlamanızı öneririz. Ay sonları ve hafta sonları talebin en yoğun olduğu dönemlerdir, bu yüzden uygun gün bulmak zorlaşabilir. Esnek bir tarihiniz varsa hafta içi bir gün ya da ay ortası talep etmek hem planlamayı kolaylaştırır hem de daha ayrıntılı bir teklif almanızı sağlar.'],
+      ['h2', 'Eşyalarınızı nasıl listelemelisiniz?'],
+      ['ul', [
+        'Odaları tek tek gezin; her odadaki büyük mobilyaları, koli sayısını ve kırılacak eşyaları not edin.',
+        'Kitaplık, depo, balkon ve bahçe eşyaları gibi unutulmaya yatkın kalemleri ayrıca yazın.',
+        'Fotoğraf ya da kısa bir video çekip firmayla paylaşın; görsel bilgi, telefonda yapılan tahminlerden çok daha doğru bir teklif sağlar.',
+      ]],
+      ['h2', 'İstanbul’da adres bilgisi neden bu kadar önemli?'],
+      ['p', 'İstanbul’da aynı mesafedeki iki taşınma bile bina yapısı ve sokak koşulları nedeniyle farklı sürede tamamlanabilir. Kamyonun binaya yanaşıp yanaşamayacağı, park imkânı, site içinde yük asansörü kuralları ve trafik durumu ekibin planını doğrudan etkiler. Bu yüzden hem çıkış hem varış adresini teklif aşamasında belirtmek önemlidir. Anadolu yakasından Avrupa yakasına ya da tersine yapılan taşımalarda ise yol süresinin ayrıca hesaba katılması gerekir.'],
+      ['h2', 'Evden eve ile şehirler arası taşınma arasındaki fark'],
+      ['p', 'Şehir içi evden eve taşımalar genellikle tek bir günde, belirli bir zaman aralığında tamamlanır. Şehirler arası nakliyat ise yolculuk süresi, yükleme ve indirme saatleri ile varış noktasındaki erişim koşullarını birlikte planlamayı gerektirir. Bu tür bir taşınma düşünüyorsanız teklifin yol masrafını ve tahmini teslim süresini açıkça içerip içermediğini sormanız yerinde olur.'],
+      ['h2', 'Teklifleri karşılaştırırken nelere bakmalısınız?'],
+      ['ol', [
+        'Teklifin paketleme, mobilya söküm ve kurulum gibi kalemleri kapsayıp kapsamadığı.',
+        'Taşınma gününde fiyatın değişip değişmeyeceği ve hangi koşulda değişeceği.',
+        'Taşıma sırasında oluşabilecek hasarda izlenecek yöntem.',
+        'Ekibin büyüklüğü ve taşınma saatinin netleştirilip yazılı hale getirilmesi.',
+      ]],
+      ['tip', 'Teklifleri yalnızca toplam rakama göre değil, neyin dahil olduğuna göre karşılaştırın. İki teklif arasındaki farkın büyük bölümü çoğu zaman kapsamdan kaynaklanır.'],
+      ['h2', 'Taşınma gününü kolaylaştıran küçük adımlar'],
+      ['ul', [
+        'Değerli eşyaları, ilaçları ve belgeleri kendi yanınızda taşıyın.',
+        'Mutfak ve banyo için ilk gün lazım olacak malzemeleri ayrı bir kolide toplayın.',
+        'Asansör ve yük kurallarını bina yönetimine önceden bildirin.',
+      ]],
+      ['h2', 'Sonuç'],
+      ['p', 'Evden eve nakliyatta düzenli bir ön hazırlık, hem bütçenizi hem de stresinizi kontrol altında tutar. Adresinizi, eşyalarınızı ve tarihinizi net paylaşarak size uygun bir plan ve açık bir teklif alabilirsiniz. Sorularınız için bizimle iletişime geçebilirsiniz.'],
+    ],
+  },
+  {
     slug: 'kadikoy-evden-eve-nakliyat-fiyatlari-neye-gore-degisir',
     title: 'Kadıköy’de Evden Eve Nakliyat Fiyatları Neye Göre Değişir?',
     description: 'Kadıköy’de nakliyat fiyatını belirleyen 7 etken: eşya miktarı, kat ve asansör durumu, mesafe, paketleme, tarih ve bina erişimi. Doğru teklif almak için ipuçları.',
